@@ -1,0 +1,36 @@
+.note-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 350px;
+  height: max-content;
+  padding: 0.5rem;
+  /* border: 0.5px solid black; */
+  border-radius: 7px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+input,
+textarea {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: large;
+  outline: none;
+  border: none;
+}
+
+textarea {
+  width: 325px;
+  height: auto;
+  resize: none;
+}
+.fab-icon {
+  top: 125px;
+  position: absolute !important;
+  margin-left: 250px !important;
+}

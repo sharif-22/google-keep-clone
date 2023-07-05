@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-inline: 2rem;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.yellow-theam {
+  background-color: hsl(45, 97%, 50%);
+}
+
+h1 {
+  cursor: pointer;
+  color: aliceblue;
+  padding-left: 1rem;
+}
+
+.icon {
+  cursor: pointer;
+  color: aliceblue;
+}

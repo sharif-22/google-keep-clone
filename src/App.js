@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "./App.css";
+import Header from "./components/Header/Header";
+import CreateNote from "./components/CreateNote/CreateNote";
+import Notes from "./components/Notes/Notes.js";
+
+const App = () => {
+  const [notes, setNotes] = useState([]);
+
+  function addNote(newNote) {
+    setNotes((prevNotes) => {
+      return [...prevNotes, newNote];
+    });
+    console.log(notes);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <CreateNote onAdd={addNote} />
+      <div className="container">
+        <div className="row ">
+          {notes.map((noteItems, index) => {
+            // console.log(noteItems);
+            return (
+              <Notes title={noteItems.title} content={noteItems.content} />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
