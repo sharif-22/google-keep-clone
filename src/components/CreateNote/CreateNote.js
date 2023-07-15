@@ -5,15 +5,17 @@ import "./CreateNote.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Fab, Zoom } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
 
 // import section end
 
 //  react functional component
-const CreateNote = (props) => {
+const CreateNote = ({ onAdd }) => {
   // storing the data in variable
   // using useState hook for user interaction to popup title
 
   const [isExpand, setIsExpand] = useState(false);
+  const [collapse, setCollapse] = useState(false);
 
   // method 1 to use useState
   // const [title, settitle] = useState("");
@@ -30,7 +32,16 @@ const CreateNote = (props) => {
 
   // function to set isExpand = true | expand() return Boolean value
   function expand() {
+    setIsExpand(!isExpand);
+  }
+
+  function ColapsExpand() {
+    setCollapse(!collapse);
+  }
+  // force value
+  function textarea() {
     setIsExpand(true);
+    setCollapse(false);
   }
 
   // function to store text data
@@ -49,8 +60,10 @@ const CreateNote = (props) => {
 
   function HandleClick(event) {
     // console.log(`Title : ${note.title} , Content :  ${note.content}`);
-    props.onAdd(note);
+
+    onAdd(note);
     setNote({ title: "", content: "" });
+    ColapsExpand();
   }
 
   // utillities functions end
@@ -60,7 +73,7 @@ const CreateNote = (props) => {
 
   return (
     <div className="note-page container">
-      <form>
+      <form className="w-70">
         {isExpand && (
           <input
             name="title"
@@ -70,42 +83,34 @@ const CreateNote = (props) => {
           />
         )}
         <textarea
+          contentEditable="true"
           name="content"
           value={note.content}
           placeholder="Start the Notes in detail "
-          rows={isExpand ? 3 : 2}
-          onClick={expand}
+          rows={isExpand ? 5 : 2}
+          onClick={textarea}
           onChange={HandelInput}
         />
       </form>
       <Zoom in={isExpand}>
-        <Fab onClick={HandleClick} className="fab-icon" size="medium">
-          <AddIcon />
-        </Fab>
+        {collapse ? (
+          // true
+          <Fab onClick={expand} className="fab-icon" size="medium">
+            <ClearIcon />
+          </Fab>
+        ) : (
+          // false
+          <Fab
+            onClick={(ColapsExpand, HandleClick)}
+            className="fab-icon"
+            size="medium"
+          >
+            <AddIcon />
+          </Fab>
+        )}
       </Zoom>
     </div>
   );
 };
 
 export default CreateNote;
-// eslint-disable-next-line
-{
-  /**
-   * useState Hook 
-   * 1- we need to import the hook in react package 
-   *      hooks are exported in normal methods so we need to specify the name in {curly braces } while importing the hook
-   * 
-   * 2- SYNTAX and Example 
-   * 
-   *    const [variablename , callbackfunction] = useState (intial value of the variable it can be any datatype boolean , string, num etcc )
-   *    
-   *        EX:- const [count ,setCount] = useState(0)
-   *                  even though we change the count = 1 it doesn't  work 
-   *        to change the count -> [0] value 
-   *        function click ()=>{ setCount(count + 1)}
-   *    when the click funtion trigger the count value will increment with respective of btnClicks 
-   * 
-   * 
-
-*/
-}

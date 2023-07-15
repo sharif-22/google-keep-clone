@@ -12,6 +12,7 @@ const App = () => {
 
   function addNote(newNote) {
     setNotes((prevNotes) => {
+      console.log(prevNotes);
       return [...prevNotes, newNote];
     });
     console.log(notes);

@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   margin-top: 5%;
+  height: auto;
 }
 form {
   display: flex;
@@ -25,12 +26,13 @@ textarea {
 }
 
 textarea {
-  width: 325px;
+  /* width: 325px; */
   height: auto;
+  max-height: 320px;
   resize: none;
 }
 .fab-icon {
-  top: 125px;
+  top: 87%;
   position: absolute !important;
-  margin-left: 250px !important;
+  margin-left: 20% !important;
 }
